@@ -7,9 +7,18 @@ public class AccountingSync2 implements Runnable {
     static AccountingSync2 instance = new AccountingSync2();
     static int i =0;
 
+    /**
+     * synchronized 方法和synchronized (this)代码等值
+     */
     public synchronized void increase() {
         i++;
     }
+
+    /*public void increase() {
+        synchronized (this){
+            i++;
+        }
+    }*/
 
     @Override
     public void run() {

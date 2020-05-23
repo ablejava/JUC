@@ -8,7 +8,8 @@ public class AccountingSync3 implements Runnable {
     static int i =0;
 
     /**
-     * 当线程实例不同时，同步代码块为静态方法，锁为当前对象实例
+     * 当线程实例不同时，同步代码块为静态方法，锁为当前对象实例(AccountingSync3.class)
+     * 静态方法没有 synchronized(this), 没有this对象
      */
     public static synchronized void increase() {
         i++;
