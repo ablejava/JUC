@@ -9,9 +9,9 @@ import java.util.concurrent.Executors;
  * 模拟火箭点火，所有自检完毕后才进行点火
  * Created by Administrator on 2019/2/24.
  */
-public class CountDownLatchDemo implements Runnable {
+public class CountDownLatch_T1 implements Runnable {
     static final CountDownLatch end = new CountDownLatch(10);
-    static final CountDownLatchDemo demo = new CountDownLatchDemo();
+    static final CountDownLatch_T1 demo = new CountDownLatch_T1();
 
     @Override
     public void run() {
@@ -27,11 +27,12 @@ public class CountDownLatchDemo implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        // 1.提交线程任务
         ExecutorService exec = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 10; i++) {
             exec.submit(demo);
         }
-        // 等待检查
+        // 2.等待检查,当线程数量到10的时候开始发射
         end.await();
         System.out.print("fire!");
         exec.shutdown();

@@ -7,7 +7,7 @@ import java.util.concurrent.CyclicBarrier;
 /**
  * Created by Administrator on 2019/2/24.
  */
-public class CyclicBarrierDemo {
+public class CyclicBarrierDemo_T1 {
 
     public static class Soldier implements Runnable{
 
@@ -34,20 +34,17 @@ public class CyclicBarrierDemo {
 
         }
 
-        void doWork(){
-            try {
-                Thread.sleep(Math.abs(new Random().nextInt() % 10000));
+        void doWork() throws InterruptedException {
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.sleep(Math.abs(new Random().nextInt() % 10000));
+
             System.out.println(soldier+":任务完成！");
         }
     }
 
     public static class BarrierRun implements Runnable {
-        boolean flag;
-        int N;
+        boolean flag; // default = false
+        int N; // default = 10
 
         public BarrierRun(boolean flag, int N) {
             this.flag = false;
@@ -73,8 +70,11 @@ public class CyclicBarrierDemo {
         // 设置屏障点 ，主要是为了执行这个方法
         System.out.println("集合队伍！");
         for (int i = 0; i < N; i++) {
+
             System.out.println("士兵"+i+"报道");
+
             allSoldier[i] = new Thread(new Soldier(cyclic, "士兵"+i));
+
             allSoldier[i].start();
         }
     }
