@@ -29,13 +29,13 @@ public class SemphoreImpl {
         t1 = new Thread(() -> {
 
             try {
-                // 先让自己锁住
+                // 限制其他线程运行
                 s.acquire();
                 for (int i = 0; i < 5; i++) {
                     c.add(new Object());
                     System.out.println("add "+i);
                 }
-
+                // 其他线程可以运行
                 s.release();
 
             } catch (InterruptedException e) {
