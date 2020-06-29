@@ -27,6 +27,7 @@ public class MyContainer2<T> {
             }
             lists.add(t);
             ++count;
+            System.out.println(Thread.currentThread().getName()+" put put put :"+ count);
             consumer.signalAll(); // 通知消费者线程进行消费
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -51,6 +52,7 @@ public class MyContainer2<T> {
             t = lists.removeFirst();
             count --;
 
+            System.out.println(Thread.currentThread().getName()+"get get get get"+count);
             producer.signalAll(); // 通知生产者生产
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -93,7 +95,7 @@ public class MyContainer2<T> {
                  * 每个线程执行25次 put， 共50次put
                  */
                 for (int j = 0; j < 25; j++) {
-                    c.put(Thread.currentThread().getName()+" "+j);
+                    c.put(Thread.currentThread().getName()+"@@@@@@@@@@@@@@ "+j);
                 }
             }, "p"+i).start();
         }
