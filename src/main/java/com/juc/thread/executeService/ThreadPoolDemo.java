@@ -1,7 +1,9 @@
 package com.juc.thread.executeService;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /**
  * Created by Administrator on 2019/3/17.
@@ -25,5 +27,12 @@ public class ThreadPoolDemo {
         for (int i = 0; i < 10; i++) {
             es.submit(task);
         }
+
+        new Thread(new FutureTask<String>(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return null;
+            }
+        }));
     }
 }

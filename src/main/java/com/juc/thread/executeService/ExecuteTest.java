@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ExecuteTest {
     public static void main(String[] args) throws InterruptedException{
+
+        int availableProcessors = Runtime.getRuntime().availableProcessors(); // 可用的线程数
         ExecutorService execute = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<Runnable>());
         execute.execute(new Runnable() {
             @Override

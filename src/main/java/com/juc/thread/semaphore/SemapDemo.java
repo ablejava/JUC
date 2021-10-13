@@ -17,6 +17,7 @@ public class SemapDemo implements Runnable {
             // semp.tryAcquire() // 方法尝试获得锁，如果成功返回true执行否则放回false释放
             // 模拟耗时操作
             Thread.sleep(2000);
+            int i = semp.availablePermits();// 可用的许可数目
             System.out.println(Thread.currentThread().getId()+": done !");
             semp.release();
         } catch (InterruptedException e) {
